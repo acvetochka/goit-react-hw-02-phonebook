@@ -1,8 +1,10 @@
 import { Component } from 'react';
-import { ContactForm } from './Form/Form';
-import { Filter } from './Filter/Filter';
-import { ContactList } from './ContactList/ContactList';
-import { Notification } from './Notification/Notification';
+import { ContactForm } from '../ContactForm/ContactForm';
+import { Filter } from '../Filter/Filter';
+import { ContactList } from '../ContactList/ContactList';
+import { Notification } from '../Notification/Notification';
+import { Section } from 'components/Section/Section';
+import { Container } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -42,13 +44,11 @@ export class App extends Component {
   render() {
     const visibleContacts = this.getFilterContact();
     return (
-      <div>
-        <div>
-          <h2>Phonebook</h2>
+      <Container>
+        <Section title={'Phonebook'}>
           <ContactForm handleSubmit={this.handleSubmit} />
-        </div>
-        <div>
-          <h2>Contacts</h2>
+        </Section>
+        <Section title={'Contacts'}>
           <Filter onChangeFilter={this.onChangeFilter} />
           {this.state.contacts.length ? (
             <ContactList
@@ -58,8 +58,8 @@ export class App extends Component {
           ) : (
             <Notification />
           )}
-        </div>
-      </div>
+        </Section>
+      </Container>
     );
   }
 }

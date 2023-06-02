@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Container, FilterLabel, FilterInput } from './Filter.styled';
 
 export class Filter extends Component {
   changeFilter = evt => {
@@ -7,12 +8,12 @@ export class Filter extends Component {
   };
   render() {
     return (
-      <div>
-        <label>
+      <Container>
+        <FilterLabel>
           Find contact by name
-          <input type="text" onChange={this.changeFilter} />
-        </label>
-      </div>
+          <FilterInput type="text" onChange={this.changeFilter} />
+        </FilterLabel>
+      </Container>
     );
   }
 }

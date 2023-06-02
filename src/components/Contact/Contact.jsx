@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ContactItem, ContactData, ButtonDelete } from './Contact.styled';
 
 export class Contact extends Component {
   deleteContact = () => {
@@ -8,14 +9,14 @@ export class Contact extends Component {
 
   render() {
     return (
-      <li key={this.props.id}>
-        <p>
-          {this.props.name}: {this.props.number}
-        </p>
-        <button type="button" onClick={this.deleteContact}>
+      <ContactItem key={this.props.id}>
+        <ContactData>
+          {this.props.name}: <span>{this.props.number}</span>
+        </ContactData>
+        <ButtonDelete type="button" onClick={this.deleteContact}>
           Delete
-        </button>
-      </li>
+        </ButtonDelete>
+      </ContactItem>
     );
   }
 }

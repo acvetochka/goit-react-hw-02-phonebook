@@ -1,7 +1,12 @@
 import { Component } from 'react';
+import { Message } from './Notification.styled';
 
 export class Notification extends Component {
   render() {
-    return <p>The contact book is empty! Add new contacts</p>;
+    return (
+      <Message>
+        The contact book is empty! <br /> Add new contacts
+      </Message>
+    );
   }
 }
