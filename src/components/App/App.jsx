@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Notiflix from 'notiflix';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { Filter } from '../Filter/Filter';
 import { ContactList } from '../ContactList/ContactList';
@@ -8,14 +9,19 @@ import { Container } from './App.styled';
 
 export class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
     filter: '',
   };
 
   handleSubmit = contactItem => {
     const { name } = contactItem;
     if (this.state.contacts.some(contact => contact.name === name)) {
-      alert(`${name} is already in contacts.`);
+      Notiflix.Report.warning('Warning', `${name} is already in contacts.`);
     } else {
       this.setState(({ contacts }) => ({
         contacts: [contactItem, ...contacts],
@@ -29,8 +35,8 @@ export class App extends Component {
     }));
   };
 
-  onChangeFilter = value => {
-    this.setState({ filter: value });
+  onChangeFilter = evt => {
+    this.setState({ filter: evt.currentTarget.value });
   };
 
   getFilterContact = () => {
@@ -63,3 +69,14 @@ export class App extends Component {
     );
   }
 }
+
+Notiflix.Report.init({
+  svgSize: '50px',
+  messageFontSize: '20px',
+  warning: {
+    svgColor: '#44728f',
+
+    buttonBackground: '#44728f',
+    backOverlayColor: 'rgba(0,0, 0,0.2)',
+  },
+});
